@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct KimchiApp: App {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            KimchiTabView()
+                .environmentObject(KimchiUserData())
+            
+               
         }
     }
 }
