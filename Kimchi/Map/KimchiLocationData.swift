@@ -77,7 +77,6 @@ struct KimchiLocationList {
         KimchiLocationData(address: "58 Baekdo Makguksu Road, Goseong, South Korea", name: "백도막국수", translateName: "Baekdo Makguksu", spiceLevel: 4, latitude: 38.345792, longitude: 128.466481, kimchiType: "Ponytail Radish Kimchi"),
         
         // Water Kimchi
-        
         KimchiLocationData(address: "1599 Nambusunhwan-ro, Sillim-dong, Gwanak-gu, Seoul, 08759 South Korea", name: "막불감동", translateName: "Makbul Gamdong", spiceLevel: 1, latitude: 37.4837, longitude: 126.9297, kimchiType: "Watery Radish Kimchi"),
 
         KimchiLocationData(address: "6-7 Banghwa-daero 49-gil, Gangseo-gu, Seoul, 157-848 South Korea", name: "고성막국수", translateName: "Goseong Makguksu", spiceLevel: 1, latitude: 37.5772, longitude: 126.8106, kimchiType: "Watery Radish Kimchi"),
@@ -89,7 +88,6 @@ struct KimchiLocationList {
         KimchiLocationData(address: "3 Tojeong-ro 37-gil, Yonggang-dong, Mapo-gu, Seoul, 04166 South Korea", name: "조박집", translateName: "Jobakjip", spiceLevel: 1, latitude: 37.5440, longitude: 126.9533, kimchiType: "Watery Radish Kimchi"),
         
         // Stuffed Kimchi
-        
         KimchiLocationData(address: "244 Dangsan-ro, Dangsan 2-dong, Yeongdeungpo-gu, Seoul, South Korea", name: "이조보쌈", translateName: "Ijo Bossam", spiceLevel: 2, latitude: 37.5347, longitude: 126.9018, kimchiType: "Stuffed Kimchi"),
 
         KimchiLocationData(address: "8 Changdeokgung 1-gil, Gahoe-dong, Jongno-gu, Seoul, 03057 South Korea", name: "천하보쌈", translateName: "Cheonha Bossam", spiceLevel: 2, latitude: 37.5828, longitude: 126.9841, kimchiType: "Stuffed Kimchi"),
@@ -134,7 +132,6 @@ struct KimchiLocationList {
         KimchiLocationData(address: "4-1 Hangang-daero 77-gil, Yongsan-gu, Seoul, South Korea", name: "원동미나리삼겹살", translateName: "Wondong Minari Samgyeopsal", spiceLevel: 2, latitude: 37.5445, longitude: 126.9718, kimchiType: "Stuffed Cucumber Kimchi"),
         
         //Jupgal
-        
         KimchiLocationData(address: "65 Jong-ro, Jongno-gu, Seoul, South Korea", name: "하얀고래 종각본점", translateName: "Hayan Gorae Jonggak Main Branch", spiceLevel: 3, latitude: 37.5704, longitude: 126.9850, kimchiType: "Seafood Kimchi"),
 
         KimchiLocationData(address: "291 Banpo-daero, Seocho-gu, Seoul, South Korea", name: "김치얼스", translateName: "Kimcheers", spiceLevel: 2, latitude: 37.5030, longitude: 126.9820, kimchiType: "Seafood Kimchi"),

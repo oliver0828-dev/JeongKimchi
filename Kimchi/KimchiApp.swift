@@ -16,6 +16,7 @@ struct KimchiApp: App {
         WindowGroup {
             KimchiTabView()
                 .environmentObject(KimchiUserData())
+                .environmentObject(ImageData())
             
                
         }

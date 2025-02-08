@@ -106,7 +106,7 @@ struct KimchiRecipeView: View {
                 }
             }
             .padding(.horizontal)
-            .navigationTitle("Kimchi")
+            .navigationTitle("Recipes")
         }
     }
 }

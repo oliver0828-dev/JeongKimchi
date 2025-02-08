@@ -174,18 +174,18 @@ struct IngredientsCheckView: View {
                         .font(.headline)
                     
                     VStack(alignment: .leading) {
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.cabbage, ingredient: "medium napa cabbage", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.cucumber, ingredient: "cucumber", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.seaSalt, ingredient: "cup of coarse sea salt", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.chiliPowder, ingredient: "cup of Korean chili powder (Gochugaru)", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.ginger, ingredient: "tsp ginger, minced", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.fishSauce, ingredient: "tbsp fish sauce", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.greenOnions, ingredient: "green onions", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.sugar, ingredient: "sugar", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.radish, ingredient: "small Korean radish, julienned", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.fruits, ingredient: "pear or apple, sliced", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.nuts, ingredient: "tbsp nuts", checkedItems: $checkedItems)
-                        IngredientsCheckStack(ingredientInt: KimchiIngredients.seafood, ingredient: "cup salted seafood (anchovy sauce, fermented shrimp)", checkedItems: $checkedItems)
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.cabbage, ingredient: "Cabbage")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.cucumber, ingredient: "Cucumber")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.seaSalt, ingredient: "Sea Salt")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.chiliPowder, ingredient: "Chili Powder")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.ginger, ingredient: "Ginger")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.fishSauce, ingredient: "Fish Sauce")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.greenOnions, ingredient: "Green Onions")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.sugar, ingredient: "Sugar")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.radish, ingredient: "Radish")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.fruits, ingredient: "Fruits")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.nuts, ingredient: "Nuts")
+                        ingredientsCheckStack(ingredientInt: KimchiIngredients.seafood, ingredient: "Seafood")
                     }
                     .padding()
                 }
@@ -206,7 +206,6 @@ struct IngredientsCheckStack: View {
             HStack {
                 Button {
                     checkedItems[ingredient] = !(checkedItems[ingredient] ?? false)
-                    UserDefaults.standard.set(checkedItems, forKey: "checkedItems")
                 } label: {
                     Image(systemName: (checkedItems[ingredient] ?? false) ? "checkmark.square.fill" : "checkmark.square")
                 }
@@ -219,14 +218,15 @@ struct IngredientsCheckStack: View {
     }
 }
 
+
 struct IngredientsCheckSheetView: View {
     @State var kimchiName: String
     @State private var KimchiIngredientsList: [KimchiIngredientsData] = KimchiIngredientsLists.kimchis
-    @State private var checkedItems: [String: Bool] = UserDefaults.standard.dictionary(forKey: "checkedItems") as? [String: Bool] ?? [:]
-    
+    @State private var checkedItems: [String: Bool] = [:]
+
     var body: some View {
         VStack {
-            Text("Check List")
+            Text("\(kimchiName) - Check List")
                 .font(.headline)
                 .padding()
             
@@ -235,18 +235,18 @@ struct IngredientsCheckSheetView: View {
                     let KimchiIngredients = kimchi
                     if KimchiIngredients.name == kimchiName {
                         VStack(alignment: .leading) {
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.cabbage, ingredient: "medium napa cabbage", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.cucumber, ingredient: "cucumber", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.seaSalt, ingredient: "cup of coarse sea salt", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.chiliPowder, ingredient: "cup of Korean chili powder (Gochugaru)", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.ginger, ingredient: "tsp ginger, minced", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.fishSauce, ingredient: "tbsp fish sauce", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.greenOnions, ingredient: "green onions", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.sugar, ingredient: "sugar", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.radish, ingredient: "small Korean radish, julienned", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.fruits, ingredient: "pear or apple, sliced", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.nuts, ingredient: "tbsp nuts", checkedItems: $checkedItems)
-                            IngredientsCheckStack(ingredientInt: KimchiIngredients.seafood, ingredient: "cup salted seafood (anchovy sauce, fermented shrimp)", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.cabbage, ingredient: "Napa Cabbage", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.cucumber, ingredient: "Cucumber", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.seaSalt, ingredient: "Sea salt", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.chiliPowder, ingredient: "Korean chili powder (Gochugaru)", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.ginger, ingredient: "Ginger", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.fishSauce, ingredient: "Fish sauce", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.greenOnions, ingredient: "Green onions", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.sugar, ingredient: "Sugar", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.radish, ingredient: "Korean radish", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.fruits, ingredient: "Fruits (Apple / Pear)", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.nuts, ingredient: "Nuts", checkedItems: $checkedItems)
+                            IngredientsCheckStack(ingredientInt: KimchiIngredients.seafood, ingredient: "Salted seafood (anchovy sauce, fermented shrimp)", checkedItems: $checkedItems)
                         }
                         .padding()
                     }
@@ -254,11 +254,27 @@ struct IngredientsCheckSheetView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.bottom, 10)
-
         }
         .padding()
+        .onAppear {
+            loadCheckedItems()
+        }
+        .onDisappear {
+            saveCheckedItems()
+        }
         .presentationDetents([.medium, .large])
         .presentationDragIndicator(.visible)
     }
+    
+    // Load saved checked items for this specific recipe
+    private func loadCheckedItems() {
+        if let savedItems = UserDefaults.standard.dictionary(forKey: "checkedItems_\(kimchiName)") as? [String: Bool] {
+            checkedItems = savedItems
+        }
+    }
+    
+    // Save the checked items for this specific recipe
+    private func saveCheckedItems() {
+        UserDefaults.standard.set(checkedItems, forKey: "checkedItems_\(kimchiName)")
+    }
 }
-
