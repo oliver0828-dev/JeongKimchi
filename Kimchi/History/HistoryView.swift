@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HistoryView: View {
     @State var topFivekimchiHistoryData: [TopFiveKimchiHistoryData] = KimchiHistoryDataList.TopFiveKimchiHistoryDataList
-    
     @State var kimchiIngredientsData: [KimchiIngredientsData] = KimchiIngredientsLists.kimchis
     
     let rows = [
@@ -31,18 +30,22 @@ struct HistoryView: View {
                         ForEach(topFivekimchiHistoryData.indices, id: \.self) { kimchi in
                             let TopFiveKimchi = topFivekimchiHistoryData[kimchi]
                             
-                            HStack {
-                                VStack (alignment: .leading){
-                                    Text(TopFiveKimchi.kimchiName)
-                                    Text(TopFiveKimchi.kimchiKoreanName)
-                                        .font(.caption)
+                            NavigationLink {
+                                OriginView(kimchiName: TopFiveKimchi.kimchiName)
+                            } label: {
+                                HStack {
+                                    VStack (alignment: .leading){
+                                        Text(TopFiveKimchi.kimchiName)
+                                        Text(TopFiveKimchi.kimchiKoreanName)
+                                            .font(.caption)
+                                    }
+                                    Spacer()
                                 }
-                                Spacer()
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: 50)
+                                .background(Color.red.opacity(0.5))
+                                .clipShape(.rect(cornerRadius: 15))
                             }
-                            .padding()
-                            .frame(maxWidth: .infinity, maxHeight: 50)
-                            .background(Color.red.opacity(0.5))
-                            .clipShape(.rect(cornerRadius: 15))
                         }
                         
              
@@ -53,7 +56,7 @@ struct HistoryView: View {
                                 .font(.title2.bold())
                         }
                         
-                        LazyHGrid(rows: rows) {
+                        LazyVGrid(columns: rows) {
                             ForEach(kimchiIngredientsData.indices, id: \.self) { kimchi in
                                 let kimchis = kimchiIngredientsData[kimchi]
                                 if kimchis.type == "Regional" || kimchis.type == "Special"{

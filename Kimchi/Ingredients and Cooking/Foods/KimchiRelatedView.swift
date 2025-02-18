@@ -34,62 +34,26 @@ struct KimchiRelatedView: View {
                             Spacer()
                         }
                         
-                        HStack {
-                            HStack {
-                                Image(systemName: "person.2.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 35, height: 35)
-                                Text("\(2)")
-                            }
-                            .foregroundStyle(.gray)
-                            .frame(width: 100, height: 50)
-                            .background(Color.gray.opacity(0.3))
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            
-                            Spacer()
-                            
-                            NavigationLink {
+                        Divider()
+                        
+                        VStack (alignment: .leading){
+                            Text("Description")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                               
+                            Text(kimchiFood.description)
                                 
-                            } label: {
-                                HStack {
-                                    Image(systemName: "play.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20, height: 20)
-                                    Text("Start")
-                                        .font(.title3)
-                                }
-                                .frame(width: 150, height: 50)
-                                .background(Color.blue.opacity(0.3))
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                            }
-                            
-                            Button {
-                                // Timer action (placeholder)
-                            } label: {
-                                Image(systemName: "timer.circle")
-                                    .resizable()
-                                    .foregroundStyle(.orange)
-                            }
-                            .frame(width: 50, height: 50)
-                            .background(Color.orange.opacity(0.3))
-                            .clipShape(Circle())
+                        }
+                        .frame(maxWidth: .infinity)
+                        
+                        HStack {
+            
+                           
                         }
                     
                         
-                        VStack {
-                            HStack {
-                                Text("Ingredients")
-                                    .font(.title3)
-                                    .fontWeight(.semibold)
-                                Spacer()
-                            }
-                            
-                            IngredientsView(kimchiName: kimchiFood.kimchiName)
-                        }
+                      
                     }
-                    .frame(maxWidth: horizontalSizeClass == .compact ? .infinity : 700)
                     .padding()
                     .fontDesign(.rounded)
                     Spacer()

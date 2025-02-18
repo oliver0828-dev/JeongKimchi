@@ -24,6 +24,7 @@ struct KimchiView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var kimchiUser: KimchiUserData
     
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -184,15 +185,6 @@ struct KimchiView: View {
             .scrollIndicators(.automatic)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        showNotes.toggle()
-                    } label: {
-                        Image(systemName: "square.and.pencil")
-                    }
-                    .sheet(isPresented: $showNotes) {
-                        Text("notes")
-                    }
-                    
                     Button {
                         showMaps.toggle()
                     } label: {

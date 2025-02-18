@@ -27,10 +27,6 @@ struct KimchiTabView: View {
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
-            ImageHomeView()
-                .tabItem {
-                    Label("Notes", systemImage: "note.text")
-                }
         }
     }
 }
@@ -38,5 +34,4 @@ struct KimchiTabView: View {
 #Preview {
     KimchiTabView()
         .environmentObject(KimchiUserData())
-        .environmentObject(ImageData())
 }

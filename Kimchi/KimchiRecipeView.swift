@@ -21,8 +21,8 @@ struct KimchiRecipeView: View {
     
     
     
-    @State private var scale: CGFloat = 1.0 // Current scale of the image
-    @State private var lastScale: CGFloat = 5.0 // Scale before the current gesture
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 5.0
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     @EnvironmentObject var kimchiUser: KimchiUserData
@@ -43,6 +43,11 @@ struct KimchiRecipeView: View {
                             VStack(alignment: .leading, spacing: 15) {
                                 HStack {
                                     VStack (alignment: .leading) {
+                                        
+//                                        Image("baechu")
+//                                            .resizable()
+//                                            .scaledToFit()
+//                                            .frame(width: 100, height: 50, alignment: .center)
                                         Text(kimchi.name)
                                             .fontWeight(.semibold)
                                             .fixedSize(horizontal: false, vertical: true)
@@ -68,6 +73,26 @@ struct KimchiRecipeView: View {
                                     
                                     Spacer()
                                     
+                                   
+                                }
+                                
+                                Spacer()
+                                
+                                HStack {
+                                    HStack {
+                                        Image(systemName: "person.2.fill")
+                                        Text("\(kimchi.peoplePerServing)")
+                                        
+                                        Image(systemName: "clock.fill")
+                                        Text("\(kimchi.totalTime)")
+                                        
+                                    }
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(colorScheme == .dark ? Color.gray : Color.black.opacity(0.5))
+                                    .frame(width: 125, height: 40)
+                                    .background(colorScheme == .dark ? Color.gray.opacity(0.3) : Color.black.opacity(0.3))
+                                    .clipShape(Capsule())
+                                    
                                     Button {
                                         KimchiIngredientsList[index].isFavorite.toggle()
                                     } label: {
@@ -75,24 +100,8 @@ struct KimchiRecipeView: View {
                                             .foregroundStyle(kimchi.isFavorite ? Color.red : Color.red)
                                     }
                                 }
-                                
-                                Spacer()
-                                
-                                HStack {
-                                    Image(systemName: "person.2.fill")
-                                    Text("\(kimchi.peoplePerServing)")
-                                    
-                                    Image(systemName: "clock.fill")
-                                    Text("\(kimchi.totalTime)")
-                                    
-                                }
-                                .fontWeight(.semibold)
-                                .foregroundStyle(colorScheme == .dark ? Color.gray : Color.black.opacity(0.5))
-                                .frame(width: 125, height: 40)
-                                .background(colorScheme == .dark ? Color.gray.opacity(0.3) : Color.black.opacity(0.3))
-                                .clipShape(Capsule())
                             }
-                            .frame(width: horizontalSizeClass == .compact ? 140 : 200, height: horizontalSizeClass == .compact ? 160 : 140)
+                            .frame(width: 150, height: 160)
                             .padding()
                             .background(.blue.opacity(0.4))
                             .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -105,7 +114,6 @@ struct KimchiRecipeView: View {
                     }
                 }
             }
-            .padding(.horizontal)
             .navigationTitle("Recipes")
         }
     }

@@ -1,102 +1,43 @@
-//
-//  KimchiRelatedFoodsData.swift
-//  Kimchi
-//
-//  Created by Oliver Park on 12/31/24.
-//
-
 import Foundation
 import SwiftData
 
 
-@Model
-class KimchiRelatedFoodsData: Identifiable, ObservableObject {
+struct KimchiRelatedFoodsData: Identifiable {
     var id = UUID()
     var foodName: String
     var koreanFoodName: String
     var kimchiName: String
     var tag: Int
-    
-    
-    init(foodName: String, koreanFoodName: String, kimchiName: String, tag: Int) {
-        self.foodName = foodName
-        self.koreanFoodName = koreanFoodName
-        self.kimchiName = kimchiName
-        self.tag = tag
-    }
-    
+    var description: String
+
 }
 
 struct KimchiRelatedFoodsList {
     static let kimchiRelatedFoods: [KimchiRelatedFoodsData] = [
         // Cabbage Kimchi
-        KimchiRelatedFoodsData(foodName: "Grilled Pork Belly (Samgyeopsal)", koreanFoodName: "삼겹살", kimchiName: "Cabbage Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Kimchi Stew (Kimchi Jjigae)", koreanFoodName: "김치찌개", kimchiName: "Cabbage Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Kimchi Fried Rice", koreanFoodName: "김치 볶음밥", kimchiName: "Cabbage Kimchi", tag: 3),
+        KimchiRelatedFoodsData(foodName: "Grilled Pork Belly (Samgyeopsal)", koreanFoodName: "삼겹살", kimchiName: "Cabbage Kimchi", tag: 1, description: "The rich, fatty taste of grilled pork belly is perfectly balanced by the tangy and spicy notes of cabbage kimchi."),
+        KimchiRelatedFoodsData(foodName: "Kimchi Stew (Kimchi Jjigae)", koreanFoodName: "김치찌개", kimchiName: "Cabbage Kimchi", tag: 2, description: "A comforting stew made with aged cabbage kimchi, bringing out deep umami flavors when cooked with pork and tofu."),
+        KimchiRelatedFoodsData(foodName: "Kimchi Fried Rice", koreanFoodName: "김치 볶음밥", kimchiName: "Cabbage Kimchi", tag: 3, description: "A simple yet flavorful dish where cabbage kimchi adds a spicy and tangy punch to stir-fried rice."),
         
         // White Kimchi
-        KimchiRelatedFoodsData(foodName: "Naengmyeon", koreanFoodName: "냉면", kimchiName: "White Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Boiled Pork Wraps (Bossam)", koreanFoodName: "보쌈", kimchiName: "White Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Soybean Paste Soup (Doenjang Jjigae)", koreanFoodName: "된장찌개", kimchiName: "White Kimchi", tag: 3),
+        KimchiRelatedFoodsData(foodName: "Naengmyeon", koreanFoodName: "냉면", kimchiName: "White Kimchi", tag: 1, description: "The mild and refreshing taste of white kimchi complements the cool, tangy broth of naengmyeon."),
+        KimchiRelatedFoodsData(foodName: "Boiled Pork Wraps (Bossam)", koreanFoodName: "보쌈", kimchiName: "White Kimchi", tag: 2, description: "White kimchi provides a crunchy, slightly sweet contrast to the tender, rich slices of boiled pork."),
+        KimchiRelatedFoodsData(foodName: "Soybean Paste Soup (Doenjang Jjigae)", koreanFoodName: "된장찌개", kimchiName: "White Kimchi", tag: 3, description: "The mild, fermented taste of white kimchi balances the deep, earthy flavors of doenjang jjigae."),
         
         // Cubed Radish Kimchi
-        KimchiRelatedFoodsData(foodName: "Ox Bone Soup (Seolleongtang)", koreanFoodName: "설렁탕", kimchiName: "Cubed Radish Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Korean Fried Chicken", koreanFoodName: "치킨", kimchiName: "Cubed Radish Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Steamed Sweet Potatoes", koreanFoodName: "고구마", kimchiName: "Cubed Radish Kimchi", tag: 3),
-        
-        // Ponytail Radish Kimchi
-        KimchiRelatedFoodsData(foodName: "Barley Rice", koreanFoodName: "보리밥", kimchiName: "Ponytail Radish Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Soy Sauce Braised Beef (Jangjorim)", koreanFoodName: "장조림", kimchiName: "Ponytail Radish Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Spicy Braised Chicken (Dakbokkeumtang)", koreanFoodName: "닭볶음탕", kimchiName: "Ponytail Radish Kimchi", tag: 3),
-        
-        // Watery Radish Kimchi
-        KimchiRelatedFoodsData(foodName: "Buckwheat Noodles (Makguksu)", koreanFoodName: "막국수", kimchiName: "Watery Radish Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Korean Dumplings (Mandu)", koreanFoodName: "만두", kimchiName: "Watery Radish Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Boiled Pork Slices (Suyuk)", koreanFoodName: "수육", kimchiName: "Watery Radish Kimchi", tag: 3),
-        
-        // Stuffed Kimchi
-        KimchiRelatedFoodsData(foodName: "Boiled Pork Wraps (Bossam)", koreanFoodName: "보쌈", kimchiName: "Stuffed Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Seafood Pancake (Haemul Pajeon)", koreanFoodName: "해물파전", kimchiName: "Stuffed Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Soybean Paste Soup (Doenjang Jjigae)", koreanFoodName: "된장찌개", kimchiName: "Stuffed Kimchi", tag: 3),
-        
-        // Young Radish Kimchi
-        KimchiRelatedFoodsData(foodName: "Cold Noodles with Young Radish (Yeolmu Bibim Guksu)", koreanFoodName: "열무비빔국수", kimchiName: "Young Radish Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Grilled Mackerel (Godeungeo Gui)", koreanFoodName: "고등어구이", kimchiName: "Young Radish Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Korean Rice Rolls (Kimbap)", koreanFoodName: "김밥", kimchiName: "Young Radish Kimchi", tag: 3),
-        
-        // Mustard Green Kimchi
-        KimchiRelatedFoodsData(foodName: "Rice Porridge (Juk)", koreanFoodName: "죽", kimchiName: "Mustard Green Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Spicy Stir-Fried Pork (Jeyuk Bokkeum)", koreanFoodName: "제육볶음", kimchiName: "Mustard Green Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Grilled Eel (Jang-eo Gui)", koreanFoodName: "장어구이", kimchiName: "Mustard Green Kimchi", tag: 3),
-        
-        // Stuffed Cucumber Kimchi
-        KimchiRelatedFoodsData(foodName: "Cold Noodle Soup (Mul Naengmyeon)", koreanFoodName: "물냉면", kimchiName: "Stuffed Cucumber Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Grilled Chicken (Dak Galbi)", koreanFoodName: "닭갈비", kimchiName: "Stuffed Cucumber Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Pan-Fried Tofu (Dubujeon)", koreanFoodName: "두부전", kimchiName: "Stuffed Cucumber Kimchi", tag: 3),
-        
-        // Seafood Kimchi
-        KimchiRelatedFoodsData(foodName: "Steamed Rice with Clam Soup (Bongole Tang)", koreanFoodName: "봉골레탕", kimchiName: "Seafood Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Korean Seafood Hot Pot (Haemultang)", koreanFoodName: "해물탕", kimchiName: "Seafood Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Spicy Stir-Fried Squid (Ojingeo Bokkeum)", koreanFoodName: "오징어볶음", kimchiName: "Seafood Kimchi", tag: 3),
-        
-        // Nabak Kimchi
-        KimchiRelatedFoodsData(foodName: "Korean BBQ (Gogi Gui)", koreanFoodName: "고기구이", kimchiName: "Nabak Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Plain Noodles (Guksu)", koreanFoodName: "국수", kimchiName: "Nabak Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Steamed Egg (Gyeran Jjim)", koreanFoodName: "계란찜", kimchiName: "Nabak Kimchi", tag: 3),
-        
-        // Geotjeori Kimchi
-        KimchiRelatedFoodsData(foodName: "Grilled Short Ribs (Galbi)", koreanFoodName: "갈비", kimchiName: "Geotjeori Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Stir-Fried Glass Noodles (Japchae)", koreanFoodName: "잡채", kimchiName: "Geotjeori Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Tofu Stew (Sundubu Jjigae)", koreanFoodName: "순두부찌개", kimchiName: "Geotjeori Kimchi", tag: 3),
+        KimchiRelatedFoodsData(foodName: "Ox Bone Soup (Seolleongtang)", koreanFoodName: "설렁탕", kimchiName: "Cubed Radish Kimchi", tag: 1, description: "The crisp, spicy crunch of cubed radish kimchi enhances the creamy, mild broth of seolleongtang."),
+        KimchiRelatedFoodsData(foodName: "Korean Fried Chicken", koreanFoodName: "치킨", kimchiName: "Cubed Radish Kimchi", tag: 2, description: "The acidity and crunch of cubed radish kimchi act as a perfect palate cleanser for crispy fried chicken."),
+        KimchiRelatedFoodsData(foodName: "Steamed Sweet Potatoes", koreanFoodName: "고구마", kimchiName: "Cubed Radish Kimchi", tag: 3, description: "The slightly sour and crisp texture of radish kimchi contrasts beautifully with the natural sweetness of steamed sweet potatoes."),
 
-        // Green Onion Kimchi
-        KimchiRelatedFoodsData(foodName: "Grilled Mackerel (Godeungeo Gui)", koreanFoodName: "고등어구이", kimchiName: "Green Onion Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Rice Cake Soup (Tteokguk)", koreanFoodName: "떡국", kimchiName: "Green Onion Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Spicy Pork Ribs (Dwaeji Galbi Jjim)", koreanFoodName: "돼지갈비찜", kimchiName: "Green Onion Kimchi", tag: 3),
-
-        // Garlic Chives Kimchi
-        KimchiRelatedFoodsData(foodName: "Korean BBQ (Gogi Gui)", koreanFoodName: "고기구이", kimchiName: "Garlic Chives Kimchi", tag: 1),
-        KimchiRelatedFoodsData(foodName: "Bibimbap", koreanFoodName: "비빔밥", kimchiName: "Garlic Chives Kimchi", tag: 2),
-        KimchiRelatedFoodsData(foodName: "Seafood Pancake (Haemul Pajeon)", koreanFoodName: "해물파전", kimchiName: "Garlic Chives Kimchi", tag: 3)
+        KimchiRelatedFoodsData(foodName: "Buckwheat Noodles (Makguksu)", koreanFoodName: "막국수", kimchiName: "Watery Radish Kimchi", tag: 1, description: "The light and refreshing taste of watery radish kimchi enhances the nutty, cold buckwheat noodles."),
+        KimchiRelatedFoodsData(foodName: "Korean Dumplings (Mandu)", koreanFoodName: "만두", kimchiName: "Watery Radish Kimchi", tag: 2, description: "Watery radish kimchi’s crunch and subtle spice add a refreshing balance to the soft texture of dumplings."),
+        KimchiRelatedFoodsData(foodName: "Boiled Pork Slices (Suyuk)", koreanFoodName: "수육", kimchiName: "Watery Radish Kimchi", tag: 3, description: "The mildly spicy, tangy broth of watery radish kimchi cuts through the rich taste of boiled pork slices."),
+        
+        KimchiRelatedFoodsData(foodName: "Grilled Mackerel (Godeungeo Gui)", koreanFoodName: "고등어구이", kimchiName: "Young Radish Kimchi", tag: 2, description: "Young radish kimchi’s crisp, peppery taste pairs well with the smoky, oily flavor of grilled mackerel."),
+        KimchiRelatedFoodsData(foodName: "Korean Rice Rolls (Kimbap)", koreanFoodName: "김밥", kimchiName: "Young Radish Kimchi", tag: 3, description: "The fresh, crunchy texture of young radish kimchi enhances the soft, savory taste of kimbap."),
+        
+        KimchiRelatedFoodsData(foodName: "Grilled Short Ribs (Galbi)", koreanFoodName: "갈비", kimchiName: "Geotjeori Kimchi", tag: 1, description: "The lightly fermented, fresh taste of geotjeori kimchi pairs well with the smoky, sweet marinade of grilled short ribs."),
+        KimchiRelatedFoodsData(foodName: "Stir-Fried Glass Noodles (Japchae)", koreanFoodName: "잡채", kimchiName: "Geotjeori Kimchi", tag: 2, description: "The crisp and fresh flavors of geotjeori kimchi cut through the sweetness of stir-fried glass noodles."),
+        KimchiRelatedFoodsData(foodName: "Tofu Stew (Sundubu Jjigae)", koreanFoodName: "순두부찌개", kimchiName: "Geotjeori Kimchi", tag: 3, description: "Geotjeori kimchi’s fresh crunch provides a vibrant contrast to the soft, spicy broth of sundubu jjigae.")
     ]
 }
