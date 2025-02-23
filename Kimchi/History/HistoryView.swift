@@ -47,31 +47,18 @@ struct HistoryView: View {
                                 .clipShape(.rect(cornerRadius: 15))
                             }
                         }
-                        
-             
-                        HStack {
-                            Image(systemName: "globe.asia.australia.fill")
-                                .foregroundStyle(.blue)
-                            Text("Fun Facts - Varieties")
-                                .font(.title2.bold())
-                        }
-                        
-                        LazyVGrid(columns: rows) {
-                            ForEach(kimchiIngredientsData.indices, id: \.self) { kimchi in
-                                let kimchis = kimchiIngredientsData[kimchi]
-                                if kimchis.type == "Regional" || kimchis.type == "Special"{
-                                    HStack {
-                                        VStack {
-                                            Text(kimchis.name)
-                                        }
-                                        Spacer()
-                                    }
-                                    .frame(width: 100, height: 100)
-                                    .padding()
-                                    .background(.red.opacity(0.5))
-                                }
+                        VStack {
+                            HStack {
+                                Image(systemName: "takeoutbag.and.cup.and.straw.fill")
+                                    .foregroundStyle(.blue)
+                                Text("Related Foods")
+                                    .font(.title2.bold())
                             }
+                            Text("Foods that go along with Kimchis")
+                                .font(.caption)
                         }
+                        
+                        
                         
                     }
                     
@@ -80,7 +67,7 @@ struct HistoryView: View {
                 .padding()
             }
             .fontDesign(.rounded)
-            .navigationTitle("History")
+            .navigationTitle("Explore")
         }
     }
 }

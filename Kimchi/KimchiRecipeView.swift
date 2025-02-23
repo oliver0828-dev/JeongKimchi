@@ -8,6 +8,7 @@ import SwiftUI
 struct KimchiRecipeView: View {
     @State private var KimchiIngredientsList: [KimchiIngredientsData] = KimchiIngredientsLists.kimchis
     @Binding var isFavorite: Bool
+    
     let iPadcolumns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -19,100 +20,86 @@ struct KimchiRecipeView: View {
         GridItem(.flexible())
     ]
     
-    
-    
-    @State private var scale: CGFloat = 1.0
-    @State private var lastScale: CGFloat = 5.0
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
     @EnvironmentObject var kimchiUser: KimchiUserData
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationStack {
-            ScrollView() {
-                LazyVGrid(columns: horizontalSizeClass == .compact ? iPhonecolumns : iPadcolumns) {
+            ScrollView {
+                LazyVGrid(columns: horizontalSizeClass == .compact ? iPhonecolumns : iPadcolumns, spacing: 16) {
                     ForEach(KimchiIngredientsList.indices, id: \.self) { index in
-                        
                         let kimchi = KimchiIngredientsList[index]
                         
                         NavigationLink {
                             KimchiView(kimchiName: kimchi.name, spiceLevel: kimchi.spiceLevel, isFavorite: $KimchiIngredientsList[index].isFavorite)
                         } label: {
-                            
-                            VStack(alignment: .leading, spacing: 15) {
+                            VStack(alignment: .leading, spacing: 10) {
+                                // Recipe Title and Favorite Button
                                 HStack {
-                                    VStack (alignment: .leading) {
-                                        
-//                                        Image("baechu")
-//                                            .resizable()
-//                                            .scaledToFit()
-//                                            .frame(width: 100, height: 50, alignment: .center)
+                                    VStack(alignment: .leading, spacing: 4) {
                                         Text(kimchi.name)
-                                            .fontWeight(.semibold)
-                                            .fixedSize(horizontal: false, vertical: true)
+                                            .font(.headline)
+                                            .foregroundColor(colorScheme == .dark ? .white : .black)
                                             .multilineTextAlignment(.leading)
-                                            .foregroundStyle(colorScheme == .dark ? Color.white : Color.black)
+                                        
                                         Text(kimchi.koreanName)
-                                            .font(.caption)
-                                            .foregroundStyle(colorScheme == .dark ? Color.gray : Color.black.opacity(0.7))
+                                            .font(.subheadline)
+                                            .foregroundColor(colorScheme == .dark ? .gray : .black.opacity(0.7))
                                     }
                                     
                                     Spacer()
                                     
-                                }
-                                HStack {
-                                    VStack {
-                                        HStack {
-                                            ForEach(0..<kimchi.spiceLevel, id: \.self) { _ in
-                                                Image(systemName : "flame.fill")
-                                                    .foregroundStyle(.red)
+                                    // Favorite Button with Animation
+                                    Button {
+                                        withAnimation(.spring()) {
+                                            KimchiIngredientsList[index].isFavorite.toggle()
+                                            if KimchiIngredientsList[index].isFavorite {
+                                                kimchiUser.isFavorite = true
+                                                kimchiUser.isFavorite = KimchiIngredientsList[index].isFavorite
                                             }
                                         }
+                                    } label: {
+                                        Image(systemName: kimchi.isFavorite ? "heart.fill" : "heart")
+                                            .foregroundColor(kimchi.isFavorite ? .red : .gray)
+                                            .scaleEffect(kimchi.isFavorite ? 1.2 : 1.0)
+                                            .animation(.easeInOut, value: kimchi.isFavorite)
                                     }
-                                    
-                                    Spacer()
-                                    
-                                   
+                                }
+                                
+                                // Spice Level
+                                HStack(spacing: 4) {
+                                    ForEach(0..<kimchi.spiceLevel, id: \.self) { _ in
+                                        Image(systemName: "flame.fill")
+                                            .foregroundColor(.red)
+                                    }
                                 }
                                 
                                 Spacer()
                                 
-                                HStack {
-                                    HStack {
-                                        Image(systemName: "person.2.fill")
-                                        Text("\(kimchi.peoplePerServing)")
-                                        
-                                        Image(systemName: "clock.fill")
-                                        Text("\(kimchi.totalTime)")
-                                        
-                                    }
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(colorScheme == .dark ? Color.gray : Color.black.opacity(0.5))
-                                    .frame(width: 125, height: 40)
-                                    .background(colorScheme == .dark ? Color.gray.opacity(0.3) : Color.black.opacity(0.3))
-                                    .clipShape(Capsule())
-                                    
-                                    Button {
-                                        KimchiIngredientsList[index].isFavorite.toggle()
-                                    } label: {
-                                        Image(systemName: kimchi.isFavorite ? "heart.fill" : "heart")
-                                            .foregroundStyle(kimchi.isFavorite ? Color.red : Color.red)
-                                    }
+                                // Serving Size and Cooking Time
+                                HStack(spacing: 8) {
+                                    Label("\(kimchi.peoplePerServing)", systemImage: "person.2.fill")
+                                    Label("\(kimchi.totalTime)", systemImage: "clock.fill")
                                 }
+                                .foregroundStyle(.gray)
+                                .font(.footnote)
+                                .padding(8)
+                                .background(colorScheme == .dark ? Color.gray.opacity(0.3) : Color.black.opacity(0.1))
+                                .clipShape(Capsule())
                             }
-                            .frame(width: 150, height: 160)
                             .padding()
-                            .background(.blue.opacity(0.4))
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .background(colorScheme == .dark ? Color.blue.opacity(0.3) : Color.blue.opacity(0.1))
+                            .cornerRadius(15)
+                            .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 3)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color.gray, lineWidth: 2)
+                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                             )
                         }
-                        .padding()
                     }
                 }
+                .padding()
             }
             .navigationTitle("Recipes")
         }

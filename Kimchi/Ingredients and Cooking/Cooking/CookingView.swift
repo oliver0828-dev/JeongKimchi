@@ -23,6 +23,7 @@ struct CookingView: View {
     @State private var showIngredients = false
     
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     @State private var counter = 0
     
@@ -40,7 +41,7 @@ struct CookingView: View {
                         HStack {
                             Text(step.description)
                                 .font(.title3)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(colorScheme == .dark ? .white : .black)
                             Spacer()
                         }
                         .padding()
@@ -200,6 +201,7 @@ struct IngredientsCheckStack: View {
     @State var ingredientInt: Double
     @State var ingredient: String
     @Binding var checkedItems: [String: Bool]
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         if ingredientInt > 0.0 {
@@ -207,12 +209,21 @@ struct IngredientsCheckStack: View {
                 Button {
                     checkedItems[ingredient] = !(checkedItems[ingredient] ?? false)
                 } label: {
-                    Image(systemName: (checkedItems[ingredient] ?? false) ? "checkmark.square.fill" : "checkmark.square")
+                    HStack{
+                        Image(systemName: (checkedItems[ingredient] ?? false) ? "checkmark.square.fill" : "checkmark.square")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height: 30)
+                        
+                        Text(ingredient)
+                            .font(.title3)
+                            .foregroundStyle(colorScheme == .dark ? .white : .black)
+                            .opacity(checkedItems[ingredient] ?? false ? 0.5 : 1.0)
+                            .strikethrough(checkedItems[ingredient] ?? false)
+                    }
                 }
                 
-                Text(ingredient)
-                    .foregroundStyle((checkedItems[ingredient] ?? false) ? .secondary : .primary)
-                    .strikethrough(checkedItems[ingredient] ?? false)
+                
             }
         }
     }

@@ -39,7 +39,7 @@ struct MapView: View {
                         }
                         UserAnnotation()
                     }
-                    .clipped() // Prevents the Map from extending behind navigation and tab bars
+                    .clipped() 
                     .frame(height: 300)
                     .cornerRadius(15)
                     .padding()
@@ -72,10 +72,10 @@ struct MapView: View {
                             } label: {
                                 HStack {
                                     VStack(alignment: .leading) {
-                                        Text(kimchiLocation.name)
+                                        Text(kimchiLocation.translateName)
                                             .font(.title3.bold())
                                             .foregroundStyle(colorScheme == .dark ? .white : .black)
-                                        Text(kimchiLocation.translateName)
+                                        Text(kimchiLocation.name)
                                             .foregroundStyle(colorScheme == .dark ? .white : .black)
                                         Text(kimchiLocation.address)
                                             .multilineTextAlignment(.leading)

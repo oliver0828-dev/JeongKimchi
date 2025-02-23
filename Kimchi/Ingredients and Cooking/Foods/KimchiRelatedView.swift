@@ -20,10 +20,14 @@ struct KimchiRelatedView: View {
                 let kimchiFood = KimchiRelatedFoodsData[food]
                 if kimchiName == kimchiFood.kimchiName && kimchiFood.tag == tag {
                     VStack {
-                        Image("baechu")
+                        Image(kimchiFood.imageName)
                             .resizable()
                             .scaledToFit()
                             .clipShape(.rect(cornerRadius: 20))
+                        
+                        Text("Source: " + kimchiFood.sourceName)
+                            .font(.caption)
+                            .foregroundStyle(.gray)
                          
                         
                         HStack {
@@ -32,7 +36,7 @@ struct KimchiRelatedView: View {
                                 .font(.title)
                                 .fontWeight(.bold)
                             Spacer()
-                        }
+                        }.padding()
                         
                         Divider()
                         
@@ -45,14 +49,6 @@ struct KimchiRelatedView: View {
                                 
                         }
                         .frame(maxWidth: .infinity)
-                        
-                        HStack {
-            
-                           
-                        }
-                    
-                        
-                      
                     }
                     .padding()
                     .fontDesign(.rounded)

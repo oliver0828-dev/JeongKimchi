@@ -9,24 +9,27 @@ import SwiftUI
 
 struct KimchiTabView: View {
     @EnvironmentObject var kimchiUser: KimchiUserData
+    @State private var selectedTab: Int = 0
+
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             KimchiRecipeView(isFavorite: $kimchiUser.isFavorite)
                 .tabItem {
                     Label("Recipes", systemImage: "list.bullet.clipboard")
                 }
-            HistoryView()
-                .tabItem {
-                    Label("Explore", systemImage: "safari.fill")
-                }
-            FavoriteFoodsView()
+                .tag(0)
+
+            FavoriteFoodsView(selectedTab: $selectedTab) // Pass Binding
                 .tabItem {
                     Label("Favorites", systemImage: "heart")
                 }
+                .tag(1) // Tag for Favorites Tab
+
             SearchView()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
+                .tag(2) // Tag for Search Tab
         }
     }
 }

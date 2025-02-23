@@ -10,7 +10,6 @@ struct CookingStepData: Identifiable {
 }
 
 struct KimchiCookingGuide {
-    // Convert fractions to a string representation
     static func fractionToString(fraction: Double) -> String {
         switch fraction {
         case 0.125..<0.126:

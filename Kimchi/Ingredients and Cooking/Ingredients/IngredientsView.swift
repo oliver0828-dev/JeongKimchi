@@ -104,6 +104,7 @@ struct ingredientsCheckStack: View {
     @State var ingredientInt: Double
     @State var ingredient: String
     @State var checked: Bool = false
+    @Environment(\.colorScheme)  var colorScheme
     var body: some View {
         
         if ingredientInt > 0.0 {
@@ -111,16 +112,26 @@ struct ingredientsCheckStack: View {
                 Button {
                     checked.toggle()
                 } label: {
-                    if checked {
-                        Image(systemName: "checkmark.square.fill")
-                    } else {
-                        Image(systemName: "checkmark.square")
+                    HStack {
+                        if checked {
+                            Image(systemName: "checkmark.square.fill")
+                                .resizable()
+                                .frame(width: 20, height: 20 )
+                            
+                        } else {
+                            Image(systemName: "checkmark.square")
+                                .resizable()
+                                .frame(width: 20, height: 20 )
+                        }
+                        
+                        Text(ingredient)
+                            .foregroundStyle(colorScheme == .dark ? .white : .black)
+                            .opacity(checked ? 0.5 : 1.0)
+                            .strikethrough(checked)
                     }
                 }
                 
-                Text(ingredient)
-                    .foregroundStyle(checked ? .secondary : .primary)
-                    .strikethrough(checked)
+               
             }
         }
     }

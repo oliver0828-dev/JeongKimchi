@@ -16,7 +16,6 @@ struct OriginView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Full-screen map background
                 ForEach(kimchiHistoryOriginData, id: \.id) { kimchi in
                     if kimchiName == kimchi.kimchiName {
                         Map(initialPosition: .region(MKCoordinateRegion(
@@ -36,8 +35,8 @@ struct OriginView: View {
                     }
                 }
                 
-                // Foreground Content
                 ScrollView {
+                    Spacer()
                     VStack(spacing: 16) {
                         ForEach(kimchiHistoryOriginData, id: \.id) { kimchi in
                             if kimchiName == kimchi.kimchiName {
@@ -45,7 +44,7 @@ struct OriginView: View {
                                     Text("\(kimchiName)'s Origin")
                                         .font(.title)
                                         .bold()
-                                        .padding(.top, 50) // Adjust spacing for better readability
+                                        .padding(.top, 50)
                                     
                                     Text("\(kimchi.kimchiOriginLocation)")
                                         .font(.headline)
@@ -57,6 +56,12 @@ struct OriginView: View {
                                         .cornerRadius(10)
                                         .multilineTextAlignment(.leading)
                                         .padding(.horizontal)
+                                    
+//                                    NavigationLink {
+//                                        KimchiView(kimchiName: kimchiName)
+//                                    } label: {
+//                                        Text("Learn How to Cook")
+//                                    }
                                 }
                                 .padding()
                                 .background(
@@ -64,14 +69,17 @@ struct OriginView: View {
                                         .fill(colorScheme == .dark ? Color.gray.opacity(0.9) : Color.white.opacity(0.9))
                                         .shadow(radius: 5)
                                 )
-                                .padding(.top, 200) // Ensures content starts below the map
+                                .padding(.top, 100)
                             }
                         }
                     }
                     .padding()
+                    
+                    Spacer()
                 }
             }
         }
+        
     }
 }
 

@@ -52,6 +52,10 @@ struct KimchiIngredientsData: Identifiable {
     var additionalTimeDescription: String
     
     var isHistory: Bool = false
+    var isRelated: Bool = false
+    
+    var imageName: String
+    var sourceName: String = "Market Kurly"
 }
 
 
@@ -81,7 +85,9 @@ struct KimchiIngredientsLists {
             cookTime: 20,
             additionalTime: 60,
             additionalTimeDescription: "Resting",
-            isHistory: true
+            isHistory: true,
+            isRelated: true,
+            imageName: "baechu"
         ),
         KimchiIngredientsData(
             name: "White Kimchi",
@@ -107,7 +113,9 @@ struct KimchiIngredientsLists {
             cookTime: 15,
             additionalTime: 30,
             additionalTimeDescription: "Cooling",
-            isHistory: true
+            isHistory: true,
+            isRelated: true,
+            imageName: "white"
         ),
         KimchiIngredientsData(
             name: "Cubed Radish Kimchi",
@@ -132,7 +140,9 @@ struct KimchiIngredientsLists {
             prepTime: 20,
             cookTime: 10,
             additionalTime: 30,
-            additionalTimeDescription: "Resting"
+            additionalTimeDescription: "Resting",
+            isRelated: true,
+            imageName: "cubed"
         ),
         KimchiIngredientsData(
             name: "Ponytail Radish Kimchi",
@@ -158,7 +168,8 @@ struct KimchiIngredientsLists {
             cookTime: 10,
             additionalTime: 60,
             additionalTimeDescription: "Ferment",
-            isHistory: true
+            isHistory: true,
+            imageName: "ponytail"
         ),
         KimchiIngredientsData(
             name: "Watery Radish Kimchi",
@@ -183,7 +194,9 @@ struct KimchiIngredientsLists {
             prepTime: 10,
             cookTime: 10,
             additionalTime: 20,
-            additionalTimeDescription: "Chilling"
+            additionalTimeDescription: "Chilling",
+            isRelated: true,
+            imageName: "watery"
         ),
         KimchiIngredientsData(
             name: "Stuffed Kimchi",
@@ -209,7 +222,8 @@ struct KimchiIngredientsLists {
             cookTime: 20,
             additionalTime: 120,
             additionalTimeDescription: "Cooling",
-            isHistory: true
+            isHistory: true,
+            imageName: "stuffed"
         ),
         KimchiIngredientsData(
             name: "Young Radish Kimchi",
@@ -234,7 +248,9 @@ struct KimchiIngredientsLists {
             prepTime: 15,
             cookTime: 10,
             additionalTime: 40,
-            additionalTimeDescription: "Ferment"
+            additionalTimeDescription: "Ferment",
+            isRelated: true,
+            imageName: "young"
         ),
         KimchiIngredientsData(
             name: "Cucumber Kimchi",
@@ -259,7 +275,8 @@ struct KimchiIngredientsLists {
             prepTime: 15,
             cookTime: 10,
             additionalTime: 20,
-            additionalTimeDescription: "Cooling"
+            additionalTimeDescription: "Cooling",
+            imageName: "cucumber"
         ),
         KimchiIngredientsData(
             name: "Green Onion Kimchi",
@@ -284,7 +301,9 @@ struct KimchiIngredientsLists {
             prepTime: 20,
             cookTime: 15,
             additionalTime: 30,
-            additionalTimeDescription: "Melding"
+            additionalTimeDescription: "Melding",
+            isRelated: true,
+            imageName: "green"
         ),
         KimchiIngredientsData(
             name: "Garlic Chives Kimchi",
@@ -309,7 +328,8 @@ struct KimchiIngredientsLists {
             prepTime: 15,
             cookTime: 10,
             additionalTime: 20,
-            additionalTimeDescription: "Cooling"
+            additionalTimeDescription: "Cooling",
+            imageName: "garlic"
         )
     ]
 }

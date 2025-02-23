@@ -10,12 +10,13 @@ import SwiftData
 
 @main
 struct KimchiApp: App {
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
+    @StateObject private var kimchiUser = KimchiUserData() // Correct initialization
+
     var body: some Scene {
         WindowGroup {
             KimchiTabView()
-                .environmentObject(KimchiUserData())
+                .fontDesign(.rounded)
+                .environmentObject(kimchiUser) // Injected globally
         }
     }
 }

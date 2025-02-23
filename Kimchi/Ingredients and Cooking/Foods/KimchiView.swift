@@ -35,15 +35,15 @@ struct KimchiView: View {
                     
                     if kimchiName == kimchiIngredients.name {
                         VStack {
-                            Image("baechu")
+                            Image(kimchiIngredients.imageName)
                                 .resizable()
                                 .scaledToFit()
                                 .clipShape(.rect(cornerRadius: 20))
                                 .frame(maxWidth: horizontalSizeClass == .compact ? .infinity : 700)
-                            
-                            Rectangle()
-                                .opacity(0.0)
-                                .frame(maxWidth: .infinity)
+                        
+                            Text("Source: " + kimchiIngredients.sourceName)
+                                .font(.caption)
+                                .foregroundStyle(.gray)
                             
                             
                             HStack {
@@ -53,6 +53,7 @@ struct KimchiView: View {
                                     .fontWeight(.bold)
                                 Spacer()
                             }
+                            .padding()
                             .frame(maxWidth: horizontalSizeClass == .compact ? .infinity : 700)
                             
                             VStack {
@@ -64,10 +65,10 @@ struct KimchiView: View {
                                         
                                     } label: {
                                         HStack {
-                                            Image(systemName: "play.fill")
+                                            Image(systemName: "frying.pan")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 20, height: 20)
+                                                .frame(width: 30, height: 20)
                                             Text("Cook")
                                                 .font(.title3)
                                         }
@@ -129,8 +130,8 @@ struct KimchiView: View {
                                         Spacer()
                                     }
                                     
-                                    Button {
-                                        
+                                    NavigationLink {
+                                        OriginView(kimchiName: kimchiName)
                                     } label: {
                                         VStack (alignment: .center) {
                                             HStack {
@@ -151,28 +152,30 @@ struct KimchiView: View {
                                 .frame(maxWidth: horizontalSizeClass == .compact ? .infinity : 700)
                             }
                             
-                            VStack(alignment: .leading) {
-                                Text("Related Foods")
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
-                                    .padding(.top)
-                                
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack {
-                                        ForEach(KimchiRelatedFoodsData.filter { $0.kimchiName == kimchiName }, id: \.id) { relatedFood in
-                                            
-                                            NavigationLink {
-                                                KimchiRelatedView(kimchiName: relatedFood.kimchiName, tag: relatedFood.tag)
-                                            } label: {
-                                                RelatedFoodsListView(
-                                                    relatedFoodName: relatedFood.foodName,
-                                                    koreanName: relatedFood.koreanFoodName
-                                                )
+                            if kimchiIngredients.isRelated {
+                                VStack(alignment: .leading) {
+                                    Text("Related Foods")
+                                        .font(.title2)
+                                        .fontWeight(.semibold)
+                                        .padding(.top)
+                                    
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack {
+                                            ForEach(KimchiRelatedFoodsData.filter { $0.kimchiName == kimchiName }, id: \.id) { relatedFood in
+                                                
+                                                NavigationLink {
+                                                    KimchiRelatedView(kimchiName: relatedFood.kimchiName, tag: relatedFood.tag)
+                                                } label: {
+                                                    RelatedFoodsListView(
+                                                        relatedFoodName: relatedFood.foodName,
+                                                        koreanName: relatedFood.koreanFoodName, imageName: relatedFood.imageName
+                                                    )
+                                                }
+                                                
                                             }
-                                            
                                         }
+                                        .padding(.horizontal)
                                     }
-                                    .padding(.horizontal)
                                 }
                             }
                         }
@@ -221,10 +224,12 @@ struct KimchiView: View {
 struct RelatedFoodsListView: View {
     @State var relatedFoodName: String
     @State var koreanName: String
+    @State var imageName: String
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                Image("baechu")
+                Image(imageName)
                     .resizable()
                     .scaledToFit()
                     .clipShape(.rect(cornerRadius: 15))
@@ -235,6 +240,7 @@ struct RelatedFoodsListView: View {
                     Text(koreanName)
                         .font(.caption)
                 }
+                .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Spacer()
             }
             .padding()
